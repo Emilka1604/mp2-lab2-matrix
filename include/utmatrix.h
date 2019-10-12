@@ -242,7 +242,7 @@ TMatrix<ValType>::TMatrix(int s): TVector<TVector<ValType> >(s)
 	if(s > MAX_MATRIX_SIZE)
 		throw "No correct";
 	for (int i = 0; i < s; i++)
-		TVector<TVector<ValType>>::pVector[i] = TVector<ValType>(s - i, i);
+		TVector < TVector < ValType > >::pVector[i] = TVector<ValType>(s - i, i);
     // по умолчанию создается квадратная матрица sхs
     // надо заменить созданную матрицу верхнетреугольной
     // вектора должны быть разной длины в матрице
