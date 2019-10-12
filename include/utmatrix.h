@@ -74,11 +74,11 @@ TVector<ValType>::TVector(int s, int si)
 template <class ValType> //конструктор копирования
 TVector<ValType>::TVector(const TVector<ValType>& v)
 {
-	pVector = new ValType[v.Size];
-	Size = v.Size;
-	StartIndex = v.StartIndex;
-	for (int i = 0; i < Size; i++)
-		pVector[i] = v.pVector[i];
+		pVector = new ValType[v.Size];
+		Size = v.Size;
+		StartIndex = v.StartIndex;
+		for (int i = 0; i < Size; i++)
+			pVector[i] = v.pVector[i];
 	
 } /*-------------------------------------------------------------------------*/
 
@@ -99,35 +99,42 @@ ValType& TVector<ValType>::operator[](int pos)
 template <class ValType> // сравнение
 bool TVector<ValType>::operator==(const TVector &v) const
 {
-	bool flag = true;
 	if (this == &v) {
 		return true;
 	}
-	else
-			if ((Size != v.Size) || (StartIndex != v.StartIndex))
-				flag = false;
+	else {
+		bool flag = false;
+		int count = 0;
+		if ((Size == v.Size) && (StartIndex == v.StartIndex)) {
 			for (int i = 0; i < Size; i++)
-				if (pVector[i] != v.pVector[i]) {
-					flag = false; break;
-				}
-			return flag;
+				if (pVector[i] == v.pVector[i])
+					count++;
+			if (count == Size)
+				flag = true;
+		}
+		return flag;
+	}
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // сравнение
 bool TVector<ValType>::operator!=(const TVector &v) const
 {
-	bool flag = false;
-	if (this == &v)
+	if (this == &v) {
 		return false;
-	else
-	
-	if ((Size != v.Size) || (StartIndex != v.StartIndex))
-		flag = true;
-	for (int i = 0; i < Size; i++)
-		if (pVector[i] != v.pVector[i]) {
-			flag = true; break;
+	}
+	else {
+		bool flag = true;
+		int count = 0;
+		if ((Size == v.Size) && (StartIndex == v.StartIndex)) {
+			for (int i = 0; i < Size; i++)
+				if (pVector[i] == v.pVector[i])
+					count++;
+			if (count == Size)
+				flag = false;
 		}
-	return flag;
+		return flag;
+	}
+
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // присваивание
