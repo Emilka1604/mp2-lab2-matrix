@@ -138,20 +138,27 @@ TEST(TVector, vectors_with_different_size_are_not_equal)
 
 TEST(TVector, can_add_scalar_to_vector)
 {
-	TVector<int> v;
-	ASSERT_NO_THROW(v + 2);
+	TVector<int> v1(2), v2(2);
+	v2[0] = v2[1] = 3;
+	TVector<int> res = v1 + 3;
+	ASSERT_EQ(res, v2);
 }
 
 TEST(TVector, can_subtract_scalar_from_vector)
 {
-	TVector<int> v;
-	ASSERT_NO_THROW(v - 2);
+	TVector<int> v1(2), v2(2);
+	v2[0] = v2[1] = -3;
+	TVector<int> res = v1 - 3;
+	ASSERT_EQ(res, v2);
 }
 
 TEST(TVector, can_multiply_scalar_by_vector)
 {
-	TVector<int> v;
-	ASSERT_NO_THROW(v * 4);
+	TVector<int> v1(2), v2(2);
+	v1[0] = v1[1] = 1;
+	v2[0] = v2[1] = 3;
+	TVector<int> res = v1*3;
+	ASSERT_EQ(res, v2);
 }
 
 TEST(TVector, can_add_vectors_with_equal_size)
