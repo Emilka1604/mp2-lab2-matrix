@@ -163,9 +163,14 @@ TEST(TVector, can_multiply_scalar_by_vector)
 
 TEST(TVector, can_add_vectors_with_equal_size)
 {
-	TVector<int> v1;
-	TVector<int> v2;
-	ASSERT_NO_THROW(v1 + v2);
+	TVector<int> v1(5), v2(5), res(5);
+	for (int i = 0; i < 5; i++) {
+		v1[i] = 5;
+		v2[i] = 10;
+		res[i] = 15;
+	}
+	TVector<int> temp = v1 + v2;
+	ASSERT_EQ(res, temp);
 }
 
 TEST(TVector, cant_add_vectors_with_not_equal_size)
@@ -176,10 +181,15 @@ TEST(TVector, cant_add_vectors_with_not_equal_size)
 
 TEST(TVector, can_subtract_vectors_with_equal_size)
 {
+	TVector<int> v1(5), v2(5), res(5);
+	for (int i = 0; i < 5; i++) {
+		v1[i] = 5;
+		v2[i] = 20;
+		res[i] = 15;
+	}
+	TVector<int> temp = v2 - v1;
+	ASSERT_EQ(res, temp);
 
-	TVector<int> v1;
-	TVector<int> v2;
-	ASSERT_NO_THROW(v1 - v2);
 }
 
 TEST(TVector, cant_subtract_vectors_with_not_equal_size)
@@ -190,9 +200,14 @@ TEST(TVector, cant_subtract_vectors_with_not_equal_size)
 
 TEST(TVector, can_multiply_vectors_with_equal_size)
 {
-	TVector<int> v1;
-	TVector<int> v2;
-	ASSERT_NO_THROW(v1 * v2);
+	TVector<int> v1(2), v2(2);
+	int val = 8;
+	for (int i = 0; i < 2; i++) {
+		v1[i] = 2;
+		v2[i] = 2;
+	}
+	int temp = v1 * v2;
+	ASSERT_EQ(val, temp);
 }
 
 TEST(TVector, cant_multiply_vectors_with_not_equal_size)
