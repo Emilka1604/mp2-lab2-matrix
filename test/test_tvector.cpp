@@ -89,15 +89,18 @@ TEST(TVector, throws_when_set_element_with_too_large_index)
 
 TEST(TVector, can_assign_vector_to_itself)
 {
-	TVector<int> v;
-	ASSERT_NO_THROW(v = v);
+	TVector<int> v(2);
+		v[1] = 1;
+	EXPECT_EQ(1 ,v == v);
 }
 
 TEST(TVector, can_assign_vectors_of_equal_size)
 {
-	TVector<int> v1(2,1);
-	TVector<int> v2(2, 3);
-	ASSERT_NO_THROW(v1 = v2);
+	TVector<int> v1(2);
+	TVector<int> v2(2);
+	v2[1] = 1;
+	v1 = v2;
+	EXPECT_EQ(1 , v1 == v2);
 }
 
 TEST(TVector, assign_operator_change_vector_size)
@@ -110,30 +113,31 @@ TEST(TVector, assign_operator_change_vector_size)
 
 TEST(TVector, can_assign_vectors_of_different_size)
 {
-	TVector<int> v1(2, 1);
-	TVector<int> v2(5, 3);
-	ASSERT_NO_THROW(v1 = v2);
+	TVector<int> v1(2);
+	TVector<int> v2(5);
+	v1 = v2;
+	EXPECT_EQ(5, v1.GetSize());
 }
 
 TEST(TVector, compare_equal_vectors_return_true)
 {
 	TVector<int> v1(11, 3);
 	TVector<int> v2(11, 3);
-	EXPECT_EQ(v1, v2);
+	EXPECT_EQ(1, v2 == v1);
 
 }
 
 TEST(TVector, compare_vector_with_itself_return_true)
 {
 	TVector<int> v(11, 3);
-	EXPECT_EQ(v, v);
+	EXPECT_EQ(1, v == v);
 }
 
 TEST(TVector, vectors_with_different_size_are_not_equal)
 {
 	TVector<int> v1(10);
 	TVector<int> v2(9);
-	EXPECT_NE(v1, v2);
+	EXPECT_EQ(0, v2 == v1);
 }
 
 TEST(TVector, can_add_scalar_to_vector)

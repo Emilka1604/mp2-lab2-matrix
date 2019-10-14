@@ -290,8 +290,7 @@ TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
 template <class ValType> // сложение
 TMatrix<ValType> TMatrix<ValType>::operator+(const TMatrix<ValType> &mt)
 {
-	TVector< TVector<ValType> >::operator+(mt);
-	return *this;
+	return(TVector< TVector<ValType> >::operator+(mt));
     // благодаря наследованию от TVector<TVector<ValType> > operator+
     // уже есть, надо только его вызвать
 	
@@ -300,8 +299,7 @@ TMatrix<ValType> TMatrix<ValType>::operator+(const TMatrix<ValType> &mt)
 template <class ValType> // вычитание
 TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType> &mt)
 {
-	TVector< TVector<ValType> >::operator-(mt);
-	return *this;
+	return(TVector< TVector<ValType> >::operator-(mt));
 } /*--------------------------------------------------s-----------------------*/
 
 // TVector О3 Л2 П4 С6
